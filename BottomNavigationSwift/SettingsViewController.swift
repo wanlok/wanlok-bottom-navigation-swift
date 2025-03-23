@@ -25,28 +25,29 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         return labels.count
     }
     
-    func dequeueSettingsTableViewCell(indexPath: IndexPath, label: String) -> SettingsTableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsTableViewCell", for: indexPath) as! SettingsTableViewCell
+    func dequeueSettingsTableViewCell(_ indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsTableViewCell", for: indexPath)
+        guard let cell = cell as? SettingsTableViewCell else {
+            return cell
+        }
+        let label = labels[indexPath.row]
         cell.aTextLabel?.text = label
         return cell
     }
     
-    func dequeueSettingsSwitchTableViewCell(indexPath: IndexPath, label: String) -> SettingsSwitchTableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsSwitchTableViewCell", for: indexPath) as! SettingsSwitchTableViewCell
+    func dequeueSettingsSwitchTableViewCell(_ indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsSwitchTableViewCell", for: indexPath)
+        guard let cell = cell as? SettingsSwitchTableViewCell else {
+            return cell
+        }
+        let label = labels[indexPath.row]
         cell.aTextLabel?.text = label
         cell.updateAccessibility(label: label, on: true)
         return cell
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let label = labels[indexPath.row]
-        let cell: UITableViewCell
-        if (indexPath.row == 1) {
-            cell = dequeueSettingsSwitchTableViewCell(indexPath: indexPath, label: label)
-        } else {
-            cell = dequeueSettingsTableViewCell(indexPath: indexPath, label: label)
-        }
-        return cell
+        return indexPath.row == 1 ? dequeueSettingsSwitchTableViewCell(indexPath) : dequeueSettingsTableViewCell(indexPath)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
