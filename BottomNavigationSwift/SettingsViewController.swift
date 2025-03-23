@@ -17,47 +17,41 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName: "SettingsTableViewCell", bundle: nil), forCellReuseIdentifier: "SettingsTableViewCell")
-        tableView.register(UINib(nibName: "SettingsSwitchTableViewCell", bundle: nil), forCellReuseIdentifier: "SettingsSwitchTableViewCell")
+        tableView.register(UINib(nibName: "SettingsLabelTableViewCell", bundle: nil), forCellReuseIdentifier: "SettingsLabelTableViewCell")
+        tableView.register(UINib(nibName: "SettingsLabelSwitchTableViewCell", bundle: nil), forCellReuseIdentifier: "SettingsLabelSwitchTableViewCell")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return labels.count
     }
     
-    func dequeueSettingsTableViewCell(_ indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsTableViewCell", for: indexPath)
-        guard let cell = cell as? SettingsTableViewCell else {
-            return cell
-        }
-        let label = labels[indexPath.row]
-        cell.aTextLabel?.text = label
-        return cell
-    }
-    
-    func dequeueSettingsSwitchTableViewCell(_ indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsSwitchTableViewCell", for: indexPath)
-        guard let cell = cell as? SettingsSwitchTableViewCell else {
-            return cell
-        }
-        let label = labels[indexPath.row]
-        cell.aTextLabel?.text = label
-        cell.updateAccessibility(label: label, on: true)
-        return cell
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return indexPath.row == 1 ? dequeueSettingsSwitchTableViewCell(indexPath) : dequeueSettingsTableViewCell(indexPath)
+        return indexPath.row == 1 ? dequeueSettingsLabelSwitchTableViewCell(indexPath) : dequeueSettingsLabelTableViewCell(indexPath)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if UIAccessibility.isVoiceOverRunning {
-            if let cell = tableView.cellForRow(at: indexPath) as? SettingsSwitchTableViewCell {
-                let on = cell.aSwitch.isOn ? false : true
-                cell.updateAccessibility(label: cell.aTextLabel.text, on: on)
-                cell.aSwitch.setOn(on, animated: true)
-            }
+        (tableView.cellForRow(at: indexPath) as? SettingsTableViewCell)?.selected()
+    }
+    
+    func dequeueSettingsLabelTableViewCell(_ indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsLabelTableViewCell", for: indexPath)
+        guard let cell = cell as? SettingsLabelTableViewCell else {
+            return cell
         }
+        let label = labels[indexPath.row]
+        cell.label?.text = label
+        return cell
+    }
+    
+    func dequeueSettingsLabelSwitchTableViewCell(_ indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsLabelSwitchTableViewCell", for: indexPath)
+        guard let cell = cell as? SettingsLabelSwitchTableViewCell else {
+            return cell
+        }
+        let label = labels[indexPath.row]
+        cell.label?.text = label
+        cell.updateAccessibility(label: label, on: true)
+        return cell
     }
 }

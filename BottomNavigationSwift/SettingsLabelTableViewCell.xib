@@ -10,17 +10,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="SettingsSwitchTableViewCell" customModule="BottomNavigationSwift" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="SettingsLabelTableViewCell" customModule="BottomNavigationSwift" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jcz-gV-H2n">
-                        <rect key="frame" x="255" y="6.6666666666666679" width="51" height="31.000000000000004"/>
-                    </switch>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvH-XJ-f98">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AaI-qp-dea">
                         <rect key="frame" x="16" y="11.666666666666664" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -28,16 +25,15 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="pvH-XJ-f98" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="juj-NG-PQt"/>
-                    <constraint firstItem="jcz-gV-H2n" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="lMj-qv-l2f"/>
-                    <constraint firstItem="pvH-XJ-f98" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qCs-pO-IVf"/>
-                    <constraint firstAttribute="trailing" secondItem="jcz-gV-H2n" secondAttribute="trailing" constant="16" id="qo4-kv-cuO"/>
+                    <constraint firstItem="AaI-qp-dea" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="I6C-ga-D3h"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <constraints>
+                <constraint firstItem="AaI-qp-dea" firstAttribute="centerY" secondItem="njF-e1-oar" secondAttribute="centerY" id="Nw7-vr-XEi"/>
+            </constraints>
             <connections>
-                <outlet property="aSwitch" destination="jcz-gV-H2n" id="ZVS-S2-dUJ"/>
-                <outlet property="aTextLabel" destination="pvH-XJ-f98" id="5hR-rR-HLl"/>
+                <outlet property="label" destination="AaI-qp-dea" id="KK6-SK-aoj"/>
             </connections>
             <point key="canvasLocation" x="131" y="-11"/>
         </tableViewCell>

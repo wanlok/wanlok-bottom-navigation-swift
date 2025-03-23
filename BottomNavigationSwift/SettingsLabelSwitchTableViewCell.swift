@@ -1,5 +1,5 @@
 //
-//  SettingsSwitchTableViewCell.swift
+//  SettingsLabelSwitchTableViewCell.swift
 //  BottomNavigationSwift
 //
 //  Created by Robert Wan on 23/3/2025.
@@ -7,15 +7,15 @@
 
 import UIKit
 
-class SettingsSwitchTableViewCell: UITableViewCell {
+class SettingsLabelSwitchTableViewCell: UITableViewCell, SettingsTableViewCell {
 
-    @IBOutlet weak var aTextLabel: UILabel!
+    @IBOutlet weak var label: UILabel!
     @IBOutlet weak var aSwitch: UISwitch!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        aTextLabel.isAccessibilityElement = false
+        label.isAccessibilityElement = false
         aSwitch.isAccessibilityElement = false
     }
 
@@ -31,6 +31,14 @@ class SettingsSwitchTableViewCell: UITableViewCell {
         }
         if let on = on {
             accessibilityValue = on ? "On" : "Off"
+        }
+    }
+    
+    func selected() {
+        if UIAccessibility.isVoiceOverRunning {
+            let on = aSwitch.isOn ? false : true
+            updateAccessibility(label: label.text, on: on)
+            aSwitch.setOn(on, animated: true)
         }
     }
 }
