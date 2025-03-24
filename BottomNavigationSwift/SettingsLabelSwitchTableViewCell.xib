@@ -33,6 +33,9 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <accessibility key="accessibilityConfiguration">
+                <bool key="isElement" value="YES"/>
+            </accessibility>
             <constraints>
                 <constraint firstItem="Yb3-ID-QGt" firstAttribute="centerY" secondItem="njF-e1-oar" secondAttribute="centerY" id="P3L-lY-5ij"/>
                 <constraint firstItem="EK1-Bd-7pA" firstAttribute="centerY" secondItem="njF-e1-oar" secondAttribute="centerY" id="k7v-R4-CTb"/>

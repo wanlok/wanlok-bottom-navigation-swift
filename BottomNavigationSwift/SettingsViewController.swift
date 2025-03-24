@@ -11,7 +11,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var tableView: UITableView!
     
-    let labels = ["Alice", "Bob", "Charlie"]
+    let labels = ["Row 1", "Row 2", "Row 3"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return indexPath.row == 1 ? dequeueSettingsLabelSwitchTableViewCell(indexPath) : dequeueSettingsLabelTableViewCell(indexPath)
+        let cell: UITableViewCell
+        if indexPath.row == 1 {
+            cell = dequeueSettingsLabelSwitchTableViewCell(indexPath)
+        } else {
+            cell = dequeueSettingsLabelTableViewCell(indexPath)
+        }
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
